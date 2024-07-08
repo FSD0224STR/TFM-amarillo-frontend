@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000"
+const baseUrl = import.meta.env.VITE_BACKEND
 
 export const getUsers = async () => {
     const token = localStorage.getItem("access_token")
@@ -18,9 +18,9 @@ export const getOneUser = async (id) => {
     return user
 }
 
-export const addUsuario = async (userData) => {
+export const createUser = async (userData) => {
     const token = localStorage.getItem("access_token")
-    const response = await fetch(`${baseUrl}/users`, {
+    const response = await fetch(`${baseUrl}/users/create`, {
         method: 'POST', 
         body: JSON.stringify(userData), 
         headers: {"Content-Type": "application/json", "authorization": `Bearer ${token}`}
@@ -31,15 +31,15 @@ export const addUsuario = async (userData) => {
 
 export const deleteUser = async (id) => {
     const token = localStorage.getItem("access_token")
-
-    const response = await fetch(`${baseUrl}/users/${id}`, {method: 'DELETE', headers: {"authorization": `Bearer ${token}`}})
+    const response = await fetch(`${baseUrl}/users/${id}`, {
+        method: 'DELETE', 
+        headers: {"authorization": `Bearer ${token}`}})
     const deletedUser = await response.json();
     return deletedUser
 }
 
 export const updateUser = async (id, userData) => {
     const token = localStorage.getItem("access_token")
-
     const response = await fetch(`${baseUrl}/users/${id}`, {
         method: 'PUT', 
         body: JSON.stringify(userData), 
@@ -50,9 +50,27 @@ export const updateUser = async (id, userData) => {
     return changedUser
 }
 
+export const updateUserPic = async (userPic) => {
+    const token = localStorage.getItem("access_token")
+    const formData = new FormData();
+    formData.append("file", userPic);
+    try {
+        const response = await fetch(`${baseUrl}/upload/user`, {
+            method: 'POST', 
+            body: formData, 
+            headers: {"authorization": `Bearer ${token}`}
+        })
+        const changedUser = await response.json();
+        console.log(changedUser)
+    } catch (error) {
+        console.error('Error updating user:', error)
+        throw error
+    }
+}
+
 export const login = async (email, password) => {
     const token = localStorage.getItem("access_token")
-
+    console.log(import.meta.env.VITE_BACKEND)
     const response = await fetch(`${baseUrl}/users/login`, {
         method: 'POST', 
         body: JSON.stringify({email, password}), 
