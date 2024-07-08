@@ -19,17 +19,18 @@ import './profileBar.scss'
 const items = [
   {    
     key: '/perfil',
-    label: 'Editar mi Perfil',
+    label: <a href="/perfil">Ver mi Perfil</a>,
   },
   {    
     key: '/expenses',
-    label: 'Ver mis Gastos',
+    label: <a href="/expenses">Ver mis Gastos</a>,
   },
   {    
     key: '/calendario',
-    label: 'Ver mi Calendario',
+    label: <a href="/calendario">Ver mi Calendario</a>,
   },
 ];
+   
 
 const ProfileBar = () => {
   const navigate = useNavigate()
@@ -51,7 +52,7 @@ const ProfileBar = () => {
           <Button icon={<BellOutlined />} />
         </Badge>
         <p><b>Nombrer Apellidos</b></p>
-        <Dropdown
+        <Dropdown 
           menu={{
             onClick: handleDropdownItemClick,
             items: items,
