@@ -14,7 +14,11 @@ import {
   Space,
   DatePicker,
   message,
+  Flex,
+  Row,
+  Col,
 } from 'antd'
+import ProfileBar from '../../components/profileBar/profileBar'
 
 const { Option } = Select
 const formItemLayout = {
@@ -108,10 +112,14 @@ const Perfil = () => {
   const dateFormat = 'YYYY/MM/DD'
 
   return (
-    <>  
-      <div className='mb-5'>
-        <h2 className='font-medium text-2xl'>Hola, {user.name}!</h2>
-      </div>
+    <>      
+      <Flex wrap justify="space-between" align="flex-start">
+        <div className="title-box">
+          <h1 className='title'>Bienvenido de nuevo, {user.name}!</h1>
+          <h2 className='subtitle'>Here’s what’s happening with your expenses today.</h2>
+        </div>
+        <ProfileBar />
+      </Flex>
       <div className='flex'>
         <div className='bg-green-200 rounded-lg max-w-72 h-fit p-5 mr-10'>
           <div className='overflow-hidden rounded-full'>

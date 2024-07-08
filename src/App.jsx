@@ -13,6 +13,7 @@ import Perfil from './pages/perfil/perfil'
 import Absences from "./pages/absence/absence"
 import Expenses from "./pages/expenses/expenses"
 import Requests from "./pages/requests/requests"
+import Trastero from "./pages/trastero/trastero"
 
 import { useAuth } from "./contexts/authContext"
 
@@ -39,6 +40,7 @@ function App() {
               <Route path='/ausencias' element={<Absences/>}/>
               <Route path='/requests' element={<Requests/>}/>
               <Route path='/expenses' element={<Expenses/>}/>
+              <Route path='/trastero' element={<Trastero/>}/>
             </Route>
           </Route>
         </Routes>

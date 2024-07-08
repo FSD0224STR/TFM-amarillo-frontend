@@ -9,7 +9,7 @@ const Home = () => {
       <div className="flex">
         <SideBar>
         </SideBar>
-        <div className="m-8 w-full h-full">
+        <div className="main-content m-8 w-full h-full">
             <Outlet></Outlet>
         </div>
       </div>
